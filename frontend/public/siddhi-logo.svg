@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 240" role="img" aria-label="Siddhi Green Excellence logo">
+  <defs>
+    <linearGradient id="brandFrame" x1="20" y1="18" x2="200" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7e2f8e" />
+      <stop offset="1" stop-color="#53206f" />
+    </linearGradient>
+  </defs>
+  <path d="M110 14 192 72 166 170H54L28 72Z" fill="none" stroke="url(#brandFrame)" stroke-width="10" stroke-linejoin="round" />
+  <path d="M110 32 176 78 156 156H64L44 78Z" fill="#ffffff" stroke="#7e2f8e" stroke-width="5" stroke-linejoin="round" />
+  <g transform="translate(110 96)">
+    <circle r="28" fill="#ffffff" stroke="#7e2f8e" stroke-width="6" />
+    <path d="M0-56 14-22 48-34 30-2 58 22 22 24 28 58 0 34-28 58-22 24-58 22-30-2-48-34-14-22Z" fill="#7e2f8e" />
+    <circle r="26" fill="#ffffff" />
+  </g>
+  <rect x="48" y="172" width="124" height="6" rx="3" fill="#7e2f8e" />
+  <text x="110" y="210" text-anchor="middle" fill="#4f4f4f" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="24" letter-spacing="4">SIDDHI</text>
+</svg>

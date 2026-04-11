@@ -1,12 +1,14 @@
 import React from 'react';
-import { Leaf, Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { contactInfo } from '../mockData';
+import { smoothScrollTo } from '@/lib/scroll';
+import { BrandLogo } from './BrandLogo';
 
 export const Footer = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      smoothScrollTo(element, { offset: -80 });
     }
   };
 
@@ -16,13 +18,13 @@ export const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
-                <Leaf className="w-6 h-6 text-white" />
+            <div className="flex items-center gap-3">
+              <div className="brand-logo-shell brand-logo-shell-dark">
+                <BrandLogo className="h-16 w-16 shrink-0" compact />
               </div>
               <div>
-                <h3 className="text-xl font-bold">Siddhi Green</h3>
-                <p className="text-xs text-emerald-400">Environmental Consultancy</p>
+                <h3 className="text-xl font-bold leading-tight">Siddhi Green Excellence</h3>
+                <p className="text-xs text-emerald-300 uppercase tracking-[0.18em]">Environmental Consultancy</p>
               </div>
             </div>
             <p className="text-gray-400 leading-relaxed">
@@ -62,11 +64,11 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-6 text-emerald-400">Our Services</h4>
             <ul className="space-y-3">
-              <li><a href="#services" className="text-gray-400 hover:text-emerald-400 transition-colors">Environmental Impact Assessment</a></li>
-              <li><a href="#services" className="text-gray-400 hover:text-emerald-400 transition-colors">Sustainability Consulting</a></li>
-              <li><a href="#services" className="text-gray-400 hover:text-emerald-400 transition-colors">Waste Management</a></li>
-              <li><a href="#services" className="text-gray-400 hover:text-emerald-400 transition-colors">Environmental Auditing</a></li>
-              <li><a href="#services" className="text-gray-400 hover:text-emerald-400 transition-colors">Green Building Certification</a></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-gray-400 hover:text-emerald-400 transition-colors">Environmental Impact Assessment</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-gray-400 hover:text-emerald-400 transition-colors">Sustainability Consulting</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-gray-400 hover:text-emerald-400 transition-colors">Waste Management</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-gray-400 hover:text-emerald-400 transition-colors">Environmental Auditing</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-gray-400 hover:text-emerald-400 transition-colors">Green Building Certification</button></li>
             </ul>
           </div>
 
@@ -94,7 +96,7 @@ export const Footer = () => {
         <div className="border-t border-gray-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Siddhi Green Environmental Consultancy. All rights reserved.
+              © {new Date().getFullYear()} Siddhi Green Excellence. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors">Privacy Policy</a>

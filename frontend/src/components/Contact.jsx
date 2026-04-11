@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
@@ -9,9 +11,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { contactInfo } from '../mockData';
 import { useToast } from '../hooks/use-toast';
+import { Reveal } from './Reveal';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Contact = () => {
   const { toast } = useToast();
+  const sectionRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -46,11 +52,51 @@ export const Contact = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) {
+      return undefined;
+    }
+
+    const context = gsap.context(() => {
+      gsap.fromTo(
+        '.contact-info-card',
+        {
+          autoAlpha: 0,
+          x: 56,
+          y: 24,
+          rotateX: -10,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+          y: 0,
+          rotateX: 0,
+          duration: 0.9,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section.querySelector('.contact-side-stack'),
+            start: 'top 82%',
+          },
+        },
+      );
+    }, section);
+
+    return () => context.revert();
+  }, []);
+
   return (
-    <section id="contact" className="py-24 bg-gradient-to-b from-emerald-50 to-white">
+    <section ref={sectionRef} id="contact" className="relative overflow-hidden py-24 bg-gradient-to-b from-emerald-50 to-white">
+      <div className="motion-mesh">
+        <div className="motion-grid"></div>
+        <div className="section-orb left-[-5rem] top-24 h-80 w-80 bg-emerald-200/30"></div>
+        <div className="section-orb section-orb-delay bottom-[-5rem] right-[-4rem] h-80 w-80 bg-purple-200/25"></div>
+      </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <Reveal className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100 px-4 py-1">
             Contact Us
           </Badge>
@@ -60,11 +106,11 @@ export const Contact = () => {
           <p className="text-lg text-gray-600">
             Ready to make your project environmentally sustainable? Get in touch with our experts
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Form */}
-          <Card className="shadow-xl border-2 border-gray-100">
+          <Reveal direction="left">
+          <Card className="glass-panel tilt-card shadow-xl border-2 border-gray-100 bg-white/88">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -160,11 +206,11 @@ export const Contact = () => {
               </form>
             </CardContent>
           </Card>
+          </Reveal>
 
-          {/* Contact Information */}
-          <div className="space-y-8">
-            {/* Contact Cards */}
-            <Card className="bg-white shadow-lg border-2 border-gray-100 hover:border-emerald-200 transition-colors">
+          <div className="contact-side-stack space-y-8">
+            <Reveal delay={80} direction="right">
+            <Card className="contact-info-card tilt-card glass-panel bg-white/88 shadow-lg border-2 border-gray-100 hover:border-emerald-200 transition-colors">
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
@@ -177,8 +223,10 @@ export const Contact = () => {
                 </div>
               </CardContent>
             </Card>
+            </Reveal>
 
-            <Card className="bg-white shadow-lg border-2 border-gray-100 hover:border-emerald-200 transition-colors">
+            <Reveal delay={160} direction="right">
+            <Card className="contact-info-card tilt-card glass-panel bg-white/88 shadow-lg border-2 border-gray-100 hover:border-emerald-200 transition-colors">
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
@@ -191,8 +239,10 @@ export const Contact = () => {
                 </div>
               </CardContent>
             </Card>
+            </Reveal>
 
-            <Card className="bg-white shadow-lg border-2 border-gray-100 hover:border-emerald-200 transition-colors">
+            <Reveal delay={240} direction="right">
+            <Card className="contact-info-card tilt-card glass-panel bg-white/88 shadow-lg border-2 border-gray-100 hover:border-emerald-200 transition-colors">
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
@@ -205,8 +255,10 @@ export const Contact = () => {
                 </div>
               </CardContent>
             </Card>
+            </Reveal>
 
-            <Card className="bg-white shadow-lg border-2 border-gray-100 hover:border-emerald-200 transition-colors">
+            <Reveal delay={320} direction="right">
+            <Card className="contact-info-card tilt-card glass-panel bg-white/88 shadow-lg border-2 border-gray-100 hover:border-emerald-200 transition-colors">
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
@@ -219,15 +271,17 @@ export const Contact = () => {
                 </div>
               </CardContent>
             </Card>
+            </Reveal>
 
-            {/* Map Placeholder */}
-            <div className="rounded-2xl overflow-hidden shadow-lg h-64 border-2 border-gray-100">
+            <Reveal delay={420} direction="right">
+            <div className="contact-info-card project-sheen rounded-2xl overflow-hidden shadow-lg h-64 border-2 border-gray-100">
               <img 
                 src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=800&q=80"
                 alt="Office Location"
-                className="w-full h-full object-cover"
+                className="portrait-rise w-full h-full object-cover"
               />
             </div>
+            </Reveal>
           </div>
         </div>
       </div>

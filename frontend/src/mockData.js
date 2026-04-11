@@ -1,8 +1,8 @@
-// Mock data for Siddhi Green Environmental Consultancy
+// Mock data for Siddhi Green Excellence
 
 export const heroData = {
   title: "Leading the Way in Environmental Excellence",
-  subtitle: "Siddhi Green Environmental Consultancy",
+  subtitle: "Siddhi Green Excellence",
   description: "Providing comprehensive environmental solutions with expertise, innovation, and commitment to sustainable development.",
   cta: {
     primary: "Get Started",
@@ -53,6 +53,39 @@ export const servicesData = [
     icon: "building-2",
     features: ["LEED Certification", "IGBC Rating", "Energy Efficiency", "Sustainable Design"]
   }
+];
+
+export const scrollChaptersData = [
+  {
+    id: 1,
+    kicker: 'Chapter 01',
+    title: 'Decode the environmental brief before it becomes a bottleneck.',
+    description:
+      'We start by mapping statutory obligations, site context, and decision timelines so complex approvals become a structured sequence instead of a guessing game.',
+    image:
+      'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1400&q=80',
+    points: ['Regulatory mapping', 'Site-context review', 'Clearance timeline strategy'],
+  },
+  {
+    id: 2,
+    kicker: 'Chapter 02',
+    title: 'Turn field intelligence into a persuasive environmental story.',
+    description:
+      'Baseline studies, stakeholder signals, and impact modeling are translated into practical recommendations teams can actually act on across planning and execution.',
+    image:
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1400&q=80',
+    points: ['Baseline data synthesis', 'Impact narratives', 'Stakeholder alignment'],
+  },
+  {
+    id: 3,
+    kicker: 'Chapter 03',
+    title: 'Move from clearance to long-term stewardship without losing momentum.',
+    description:
+      'Our frameworks extend beyond submissions, helping teams embed mitigation, monitoring, and sustainability targets directly into real project operations.',
+    image:
+      'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=80',
+    points: ['Mitigation playbooks', 'Monitoring systems', 'Operational sustainability'],
+  },
 ];
 
 export const aboutData = {
@@ -210,9 +243,9 @@ export const testimonialsData = [
 ];
 
 export const contactInfo = {
-  email: "info@siddhigreen.com",
-  phone: "+91 98765 43210",
-  address: "Green Tower, Environmental Business Park, Mumbai - 400001, India",
+  email: "siddhi.ank@gmail.com",
+  phone: "+91 9426149105",
+  address: "Plot No. C-3/3, Kamal Arcade - The Vertical Sunclock, Comm, 3 Station Road, near SBI, Ankleshwar GIDC, Ankleshwar, Gujarat 393001",
   hours: "Monday - Friday: 9:00 AM - 6:00 PM",
   social: {
     linkedin: "#",
