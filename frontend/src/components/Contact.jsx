@@ -8,7 +8,7 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { Building2, ExternalLink, Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { contactInfo } from '../mockData';
 import { useToast } from '../hooks/use-toast';
 import { Reveal } from './Reveal';
@@ -18,6 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 export const Contact = () => {
   const { toast } = useToast();
   const sectionRef = useRef(null);
+  const [activeOfficeId, setActiveOfficeId] = useState(contactInfo.offices[0]?.id ?? 'ankleshwar');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -52,6 +53,13 @@ export const Contact = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const activeOffice =
+    contactInfo.offices.find((office) => office.id === activeOfficeId) ?? contactInfo.offices[0];
+
+  const activeOfficeMapUrl = `https://www.google.com/maps?q=${encodeURIComponent(activeOffice.mapQuery)}&z=14&output=embed`;
+
+  const getGoogleMapsLink = (query) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+
   useLayoutEffect(() => {
     const section = sectionRef.current;
 
@@ -79,6 +87,27 @@ export const Contact = () => {
           scrollTrigger: {
             trigger: section.querySelector('.contact-side-stack'),
             start: 'top 82%',
+          },
+        },
+      );
+
+      gsap.fromTo(
+        '.office-card',
+        {
+          autoAlpha: 0,
+          y: 36,
+          scale: 0.97,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.85,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section.querySelector('.offices-grid'),
+            start: 'top 84%',
           },
         },
       );
@@ -281,6 +310,118 @@ export const Contact = () => {
                 className="portrait-rise w-full h-full object-cover"
               />
             </div>
+            </Reveal>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-20 max-w-6xl">
+          <Reveal className="mb-10 text-center space-y-4">
+            <Badge className="bg-purple-100 text-purple-700 hover:bg-purple-100 px-4 py-1">
+              Our Offices
+            </Badge>
+            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              Explore Siddhi Green locations on a real Google Map
+            </h3>
+            <p className="mx-auto max-w-3xl text-lg text-gray-600">
+              Switch between our office locations to view each branch directly on Google Maps.
+            </p>
+          </Reveal>
+
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="offices-grid space-y-5">
+              {contactInfo.offices.map((office) => {
+                const isActive = office.id === activeOfficeId;
+
+                return (
+                  <Card
+                    key={office.id}
+                    className={`office-card overflow-hidden border-2 bg-white/90 shadow-lg transition-all duration-300 ${
+                      isActive
+                        ? 'border-emerald-300 shadow-2xl'
+                        : 'border-gray-100 hover:border-emerald-200'
+                    }`}
+                  >
+                    <CardContent className="p-0">
+                      <button
+                        type="button"
+                        onClick={() => setActiveOfficeId(office.id)}
+                        className="w-full p-6 text-left"
+                      >
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="flex items-start gap-4">
+                            <div className={`flex h-12 w-12 items-center justify-center rounded-full ${isActive ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600'}`}>
+                              <Building2 className="h-6 w-6" />
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-700">
+                                {office.city}
+                              </p>
+                              <h4 className="mt-2 text-xl font-bold text-gray-900">
+                                {office.title}
+                              </h4>
+                              <p className="mt-3 text-sm leading-6 text-gray-600">
+                                {office.address}
+                              </p>
+                            </div>
+                          </div>
+                          <span className={`mt-1 h-3 w-3 rounded-full ${isActive ? 'bg-emerald-500' : 'bg-gray-300'}`}></span>
+                        </div>
+                      </button>
+
+                      <div className="flex items-center justify-between border-t border-gray-100 px-6 py-4">
+                        <p className="text-sm text-gray-500">
+                          Click card to focus this office
+                        </p>
+                        <a
+                          href={getGoogleMapsLink(office.mapQuery)}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-emerald-700 hover:text-emerald-800"
+                        >
+                          Open in Google Maps
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+
+            <Reveal delay={120} direction="right">
+              <Card className="overflow-hidden border-2 border-gray-100 bg-white/92 shadow-[0_24px_70px_rgba(15,23,42,0.12)]">
+                <CardContent className="p-0">
+                  <div className="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.28em] text-purple-700">
+                        Live Map View
+                      </p>
+                      <h4 className="mt-2 text-2xl font-bold text-gray-900">
+                        {activeOffice.title}
+                      </h4>
+                    </div>
+                    <a
+                      href={getGoogleMapsLink(activeOffice.mapQuery)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-100"
+                    >
+                      Directions
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </div>
+
+                  <div className="relative h-[420px] w-full bg-gray-100">
+                    <iframe
+                      title={`${activeOffice.title} Google Map`}
+                      src={activeOfficeMapUrl}
+                      className="h-full w-full"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
             </Reveal>
           </div>
         </div>

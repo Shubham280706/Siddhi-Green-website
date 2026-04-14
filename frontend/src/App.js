@@ -1,22 +1,21 @@
 import React, { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "@/App.css";
 import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { Services } from "@/components/Services";
-import { About } from "@/components/About";
-import { Projects } from "@/components/Projects";
-import { Team } from "@/components/Team";
-import { Testimonials } from "@/components/Testimonials";
-import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { HomePage } from "@/components/HomePage";
+import { AboutPage } from "@/components/AboutPage";
 import { Toaster } from "@/components/ui/sonner";
+import { smoothScrollTo } from "@/lib/scroll";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const location = useLocation();
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.15,
@@ -45,18 +44,29 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const hash = location.hash?.replace("#", "");
+
+    if (hash) {
+      const element = document.getElementById(hash);
+      if (element) {
+        requestAnimationFrame(() => {
+          smoothScrollTo(element, { offset: -80 });
+        });
+        return;
+      }
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname, location.hash]);
+
   return (
     <div className="App">
       <Header />
-      <main>
-        <Hero />
-        <Services />
-        <About />
-        <Projects />
-        <Team />
-        <Testimonials />
-        <Contact />
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
       <Footer />
       <Toaster />
     </div>

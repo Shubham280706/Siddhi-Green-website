@@ -91,6 +91,8 @@ export const scrollChaptersData = [
 export const aboutData = {
   mission: "To provide world-class environmental consulting services that enable sustainable development while protecting our natural resources for future generations.",
   vision: "To be the most trusted environmental consultancy partner in India, recognized for our expertise, innovation, and commitment to environmental excellence.",
+  story: "Siddhi Green Excellence supports industrial and infrastructure growth with grounded environmental guidance, practical compliance strategy, and long-term sustainability thinking. Our work is built around helping organizations move confidently from approvals to responsible operations.",
+  tagline: "Environmental clarity for ambitious businesses.",
   values: [
     { title: "Excellence", description: "Delivering highest quality in every project" },
     { title: "Integrity", description: "Honest and transparent in all our dealings" },
@@ -99,9 +101,14 @@ export const aboutData = {
   ],
   stats: [
     { value: "500+", label: "Projects Completed" },
-    { value: "15+", label: "Years Experience" },
+    { value: "25+", label: "Years Experience" },
     { value: "200+", label: "Happy Clients" },
-    { value: "50+", label: "Expert Team Members" }
+    { value: "40+", label: "Expert Team Members" }
+  ],
+  highlights: [
+    "Trusted environmental consulting for industrial, infrastructure, and manufacturing clients",
+    "Structured support across approvals, monitoring, reporting, and sustainability systems",
+    "A practical approach that balances compliance needs with real business momentum"
   ]
 };
 
@@ -136,6 +143,30 @@ export const expertiseData = [
       "Data Analytics & Reporting"
     ]
   }
+];
+
+export const clientsData = [
+  "Avantor",
+  "Walchandnagar",
+  "UPL",
+  "Solvay",
+  "SKNL",
+  "Seforge",
+  "Sajjan India Limited",
+  "Lanxess",
+  "Kanoria Chemicals & Industries",
+  "KA Malle Pharmaceuticals",
+  "ISGEC",
+  "Insecticides India",
+  "Heubach",
+  "Gulbrandsen Technologies",
+  "Valiant Organics",
+  "Sika",
+  "Shiva Pharmachem",
+  "Saint-Gobain",
+  "Ratnamani Bio-Chemicals",
+  "Neogen Chemicals",
+  "Navdeep Chemicals"
 ];
 
 export const projectsData = [
@@ -180,35 +211,19 @@ export const projectsData = [
 export const teamData = [
   {
     id: 1,
-    name: "Dr. Rajesh Kumar",
-    position: "Founder & Chief Environmental Consultant",
-    qualification: "Ph.D. Environmental Science, 20+ years experience",
-    specialization: "EIA, Environmental Policy",
+    name: "Purvesh Shah",
+    position: "CEO",
+    qualification: "Founder",
+    specialization: "Leadership",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
   },
   {
     id: 2,
-    name: "Priya Sharma",
-    position: "Senior Sustainability Consultant",
-    qualification: "M.Sc. Environmental Management, LEED AP",
-    specialization: "Green Buildings, ESG",
+    name: "Kuntal Shah",
+    position: "CFO and HOD",
+    qualification: "Founder",
+    specialization: "Finance and Operations",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80"
-  },
-  {
-    id: 3,
-    name: "Anil Verma",
-    position: "Lead Environmental Auditor",
-    qualification: "B.Tech Environmental Engineering, ISO Auditor",
-    specialization: "Compliance, Risk Assessment",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
-  },
-  {
-    id: 4,
-    name: "Dr. Meera Patel",
-    position: "Head of Laboratory Services",
-    qualification: "Ph.D. Chemistry, NABL Assessor",
-    specialization: "Environmental Analysis, Quality Control",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
   }
 ];
 
@@ -247,6 +262,22 @@ export const contactInfo = {
   phone: "+91 9426149105",
   address: "Plot No. C-3/3, Kamal Arcade - The Vertical Sunclock, Comm, 3 Station Road, near SBI, Ankleshwar GIDC, Ankleshwar, Gujarat 393001",
   hours: "Monday - Friday: 9:00 AM - 6:00 PM",
+  offices: [
+    {
+      id: "ankleshwar",
+      city: "Ankleshwar",
+      title: "Siddhi Green Excellence, Ankleshwar",
+      address: "Plot No. C-3/3, Kamal Arcade - The Vertical Sunclock, Comm, 3 Station Road, near SBI, Ankleshwar GIDC, Ankleshwar, Gujarat 393001",
+      mapQuery: "Siddhi Green Excellence, Plot No. C-3/3, Kamal Arcade - The Vertical Sunclock, 3 Station Road, Ankleshwar GIDC, Ankleshwar, Gujarat 393001"
+    },
+    {
+      id: "vadodara",
+      city: "Vadodara",
+      title: "Siddhi Green Office, Vadodara",
+      address: "Vadodara, Gujarat",
+      mapQuery: "Siddhi Green office Vadodara Gujarat"
+    }
+  ],
   social: {
     linkedin: "#",
     twitter: "#",

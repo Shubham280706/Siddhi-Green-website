@@ -1,15 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { smoothScrollTo } from '@/lib/scroll';
 import { BrandLogo } from './BrandLogo';
 
 export const Header = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isTopHoverActive, setIsTopHoverActive] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,20 +45,31 @@ export const Header = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const projectsAnchor =
-        sectionId === 'projects' && window.innerWidth >= 1024
-          ? element.querySelector('[data-projects-anchor="true"]')
-          : null;
-
-      smoothScrollTo(projectsAnchor || element, { offset: -80 });
+      smoothScrollTo(element, { offset: -80 });
       setIsMobileMenuOpen(false);
     }
   };
 
+  const handleNavigation = (item) => {
+    if (item.type === 'route') {
+      navigate(item.path);
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
+    if (isHomePage) {
+      scrollToSection(item.id);
+      return;
+    }
+
+    navigate(`/#${item.id}`);
+    setIsMobileMenuOpen(false);
+  };
+
   const navItems = [
-    { label: 'Home', id: 'home' },
+    { label: 'Home', type: 'route', path: '/' },
     { label: 'Services', id: 'services' },
-    { label: 'About', id: 'about' },
+    { label: 'About Us', type: 'route', path: '/about' },
     { label: 'Projects', id: 'projects' },
     { label: 'Team', id: 'team' },
     { label: 'Contact', id: 'contact' }
@@ -84,7 +99,7 @@ export const Header = () => {
             {/* Logo */}
             <div
               className="flex items-center gap-3 cursor-pointer"
-              onClick={() => scrollToSection('home')}
+              onClick={() => navigate('/')}
             >
               <div className="brand-logo-shell hidden sm:flex">
                 <BrandLogo className="h-14 w-14 shrink-0" compact />
@@ -99,8 +114,8 @@ export const Header = () => {
             <nav className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  key={item.label}
+                  onClick={() => handleNavigation(item)}
                   className="text-gray-700 hover:text-emerald-600 font-medium transition-colors duration-200 relative group"
                 >
                   {item.label}
@@ -112,7 +127,7 @@ export const Header = () => {
             {/* CTA Button */}
             <div className="hidden md:block">
               <Button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => handleNavigation({ id: 'contact' })}
                 className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 Get Consultation
@@ -138,15 +153,15 @@ export const Header = () => {
               <nav className="flex flex-col space-y-4">
                 {navItems.map((item) => (
                   <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
+                    key={item.label}
+                    onClick={() => handleNavigation(item)}
                     className="text-gray-700 hover:text-emerald-600 font-medium transition-colors duration-200 text-left px-4 py-2 hover:bg-emerald-50 rounded-lg"
                   >
                     {item.label}
                   </button>
                 ))}
                 <Button
-                  onClick={() => scrollToSection('contact')}
+                  onClick={() => handleNavigation({ id: 'contact' })}
                   className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white mx-4"
                 >
                   Get Consultation

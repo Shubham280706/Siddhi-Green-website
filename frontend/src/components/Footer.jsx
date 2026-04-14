@@ -1,15 +1,35 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { contactInfo } from '../mockData';
 import { smoothScrollTo } from '@/lib/scroll';
 import { BrandLogo } from './BrandLogo';
 
 export const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isHomePage = location.pathname === '/';
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       smoothScrollTo(element, { offset: -80 });
     }
+  };
+
+  const handleNav = (target) => {
+    if (target.type === 'route') {
+      navigate(target.path);
+      return;
+    }
+
+    if (isHomePage) {
+      scrollToSection(target.id);
+      return;
+    }
+
+    navigate(`/#${target.id}`);
   };
 
   return (
@@ -47,13 +67,20 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-6 text-emerald-400">Quick Links</h4>
             <ul className="space-y-3">
-              {['Home', 'Services', 'About', 'Projects', 'Team', 'Contact'].map((item) => (
-                <li key={item}>
+              {[
+                { label: 'Home', type: 'route', path: '/' },
+                { label: 'Services', id: 'services' },
+                { label: 'About Us', type: 'route', path: '/about' },
+                { label: 'Projects', id: 'projects' },
+                { label: 'Team', id: 'team' },
+                { label: 'Contact', id: 'contact' },
+              ].map((item) => (
+                <li key={item.label}>
                   <button
-                    onClick={() => scrollToSection(item.toLowerCase())}
+                    onClick={() => handleNav(item)}
                     className="text-gray-400 hover:text-emerald-400 transition-colors"
                   >
-                    {item}
+                    {item.label}
                   </button>
                 </li>
               ))}
@@ -64,11 +91,11 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-6 text-emerald-400">Our Services</h4>
             <ul className="space-y-3">
-              <li><button onClick={() => scrollToSection('services')} className="text-gray-400 hover:text-emerald-400 transition-colors">Environmental Impact Assessment</button></li>
-              <li><button onClick={() => scrollToSection('services')} className="text-gray-400 hover:text-emerald-400 transition-colors">Sustainability Consulting</button></li>
-              <li><button onClick={() => scrollToSection('services')} className="text-gray-400 hover:text-emerald-400 transition-colors">Waste Management</button></li>
-              <li><button onClick={() => scrollToSection('services')} className="text-gray-400 hover:text-emerald-400 transition-colors">Environmental Auditing</button></li>
-              <li><button onClick={() => scrollToSection('services')} className="text-gray-400 hover:text-emerald-400 transition-colors">Green Building Certification</button></li>
+              <li><button onClick={() => handleNav({ id: 'services' })} className="text-gray-400 hover:text-emerald-400 transition-colors">Environmental Impact Assessment</button></li>
+              <li><button onClick={() => handleNav({ id: 'services' })} className="text-gray-400 hover:text-emerald-400 transition-colors">Sustainability Consulting</button></li>
+              <li><button onClick={() => handleNav({ id: 'services' })} className="text-gray-400 hover:text-emerald-400 transition-colors">Waste Management</button></li>
+              <li><button onClick={() => handleNav({ id: 'services' })} className="text-gray-400 hover:text-emerald-400 transition-colors">Environmental Auditing</button></li>
+              <li><button onClick={() => handleNav({ id: 'services' })} className="text-gray-400 hover:text-emerald-400 transition-colors">Green Building Certification</button></li>
             </ul>
           </div>
 

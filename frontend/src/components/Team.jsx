@@ -58,18 +58,18 @@ export const Team = () => {
         {/* Section Header */}
         <Reveal className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <Badge className="bg-purple-100 text-purple-700 hover:bg-purple-100 px-4 py-1">
-            Our Team
+            Our Founders
           </Badge>
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
-            Meet Our Experts
+            Meet Our Founders
           </h2>
           <p className="text-lg text-gray-600">
-            Experienced professionals committed to environmental excellence
+            The leadership team guiding Siddhi Green forward
           </p>
         </Reveal>
 
         {/* Team Grid */}
-        <div className="team-grid grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="team-grid grid gap-8 md:grid-cols-2 lg:grid-cols-2">
           {teamData.map((member) => (
             <Reveal
               key={member.id}

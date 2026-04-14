@@ -1,19 +1,15 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Target, Eye, Award, Users, TrendingUp, Shield } from 'lucide-react';
-import { Card, CardContent } from './ui/card';
+import { ArrowRight, Building2, Leaf, ShieldCheck, Sparkles } from 'lucide-react';
 import { Badge } from './ui/badge';
+import { Card, CardContent } from './ui/card';
 import { aboutData, expertiseData } from '../mockData';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from './ui/accordion';
 import { Reveal } from './Reveal';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const featureIcons = [Building2, ShieldCheck, Leaf];
 
 export const About = () => {
   const sectionRef = useRef(null);
@@ -57,21 +53,21 @@ export const About = () => {
       });
 
       gsap.fromTo(
-        '.about-value-card',
+        '.about-story-card',
         {
           autoAlpha: 0,
-          y: 44,
+          y: 48,
           scale: 0.97,
         },
         {
           autoAlpha: 1,
           y: 0,
           scale: 1,
-          duration: 0.95,
-          stagger: 0.09,
+          duration: 1,
+          stagger: 0.1,
           ease: 'power3.out',
           scrollTrigger: {
-            trigger: section.querySelector('.about-values-grid'),
+            trigger: section.querySelector('.about-story-grid'),
             start: 'top 84%',
           },
         },
@@ -82,134 +78,166 @@ export const About = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="about" className="relative overflow-hidden py-24 bg-gradient-to-b from-white to-emerald-50">
+    <section ref={sectionRef} id="about" className="relative overflow-hidden bg-gradient-to-b from-white via-orange-50/40 to-white py-24">
       <div className="motion-mesh">
-        <div className="motion-grid"></div>
-        <div className="section-orb left-[-4rem] top-32 h-64 w-64 bg-purple-200/30"></div>
-        <div className="section-orb section-orb-delay bottom-8 right-[-5rem] h-72 w-72 bg-emerald-200/35"></div>
+        <div className="section-orb left-[-5rem] top-20 h-72 w-72 bg-orange-200/30"></div>
+        <div className="section-orb section-orb-delay bottom-[-3rem] right-[-3rem] h-80 w-80 bg-emerald-200/25"></div>
       </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <Reveal className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <Badge className="bg-purple-100 text-purple-700 hover:bg-purple-100 px-4 py-1">
-            About Us
-          </Badge>
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
-            Expertise You Can Trust
-          </h2>
-          <p className="text-lg text-gray-600">
-            Certified professionals delivering excellence in environmental consulting for over 15 years
-          </p>
-        </Reveal>
 
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <Reveal>
-          <Card className="glass-panel tilt-card bg-white/90 border-2 border-emerald-200 shadow-lg hover:shadow-xl transition-shadow">
-            <CardContent className="p-8">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center">
-                  <Target className="w-6 h-6 text-emerald-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+          <Reveal className="space-y-8">
+            <div className="space-y-5">
+              <Badge className="bg-orange-100 px-4 py-1 text-orange-700 hover:bg-orange-100">
+                About Us
+              </Badge>
+              <h2 className="max-w-3xl text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">
+                Built on trust, compliance, and sustainable progress.
+              </h2>
+              <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
+                {aboutData.story}
+              </p>
+            </div>
+
+            <div className="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+              <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-emerald-700">
+                <Sparkles className="h-4 w-4" />
+                {aboutData.tagline}
               </div>
-              <p className="text-gray-600 leading-relaxed">{aboutData.mission}</p>
-            </CardContent>
-          </Card>
+              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                {aboutData.highlights.map((highlight, index) => {
+                  const Icon = featureIcons[index];
+
+                  return (
+                    <div key={highlight} className="about-story-card rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-orange-50/60 p-5 shadow-sm">
+                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <p className="text-sm leading-6 text-gray-700">{highlight}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {aboutData.stats.map((stat, index) => (
+                <Reveal key={stat.label} delay={index * 80}>
+                  <div className="rounded-2xl border border-orange-100 bg-white/90 p-5 text-center shadow-sm">
+                    <p
+                      className="about-stat-value bg-gradient-to-r from-orange-600 to-emerald-600 bg-clip-text text-3xl font-bold text-transparent"
+                      data-value={stat.value}
+                    >
+                      0+
+                    </p>
+                    <p className="mt-2 text-sm font-medium text-gray-600">{stat.label}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            <Reveal delay={220}>
+              <div className="rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.24em] text-orange-700">
+                      Certifications
+                    </p>
+                    <h3 className="mt-2 text-2xl font-bold text-gray-900">
+                      Recognized expertise and accredited capability
+                    </h3>
+                  </div>
+                  <Badge className="hidden bg-emerald-100 px-4 py-1 text-emerald-700 hover:bg-emerald-100 sm:inline-flex">
+                    Compliance Ready
+                  </Badge>
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {expertiseData[0].items.map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-orange-100 bg-gradient-to-br from-white to-orange-50/60 px-4 py-4 text-sm font-medium text-gray-700 shadow-sm"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
           </Reveal>
 
           <Reveal delay={120}>
-          <Card className="glass-panel tilt-card bg-white/90 border-2 border-purple-200 shadow-lg hover:shadow-xl transition-shadow">
-            <CardContent className="p-8">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
-                  <Eye className="w-6 h-6 text-purple-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">Our Vision</h3>
-              </div>
-              <p className="text-gray-600 leading-relaxed">{aboutData.vision}</p>
-            </CardContent>
-          </Card>
-          </Reveal>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {aboutData.stats.map((stat, index) => (
-            <Reveal 
-              key={index}
-              delay={index * 80}
-            >
-              <div className="tilt-card glass-panel rounded-2xl border-2 border-gray-100 bg-white/85 p-8 text-center shadow-lg transition-all duration-300 hover:shadow-xl">
-                <p
-                  className="about-stat-value text-4xl font-bold bg-gradient-to-r from-emerald-600 to-purple-600 bg-clip-text text-transparent mb-2"
-                  data-value={stat.value}
-                >
-                  0+
+            <div className="relative">
+              <div className="absolute -left-6 -top-6 hidden rounded-2xl border border-white/70 bg-white/90 px-5 py-4 shadow-xl lg:block">
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">
+                  Siddhi Green Excellence
                 </p>
-                <p className="text-gray-600 font-medium">{stat.label}</p>
+                <p className="mt-2 text-sm text-gray-600">
+                  Ankleshwar pride with a practical environmental vision.
+                </p>
               </div>
-            </Reveal>
-          ))}
-        </div>
 
-        {/* Core Values */}
-        <div className="mb-16">
-          <Reveal className="text-3xl font-bold text-center text-gray-900 mb-12">Our Core Values</Reveal>
-          <div className="about-values-grid grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {aboutData.values.map((value, index) => {
-              const icons = [Award, Shield, TrendingUp, Users];
-              const IconComponent = icons[index];
-              return (
-                <Reveal 
-                  key={index}
-                  delay={index * 90}
-                >
-                  <div className="about-value-card tilt-card glass-panel rounded-2xl border-2 border-gray-100 bg-white/85 p-6 text-center shadow-md transition-all duration-300 hover:border-emerald-200 hover:shadow-xl">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-100 to-purple-100 flex items-center justify-center mx-auto mb-4">
-                      <IconComponent className="w-7 h-7 text-emerald-600" />
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-2">{value.title}</h4>
-                    <p className="text-sm text-gray-600">{value.description}</p>
+              <div className="overflow-hidden rounded-[2rem] border-4 border-white/80 bg-white p-3 shadow-[0_30px_80px_rgba(15,23,42,0.16)]">
+                <img
+                  src="/about-clock-tower.jpg"
+                  alt="Siddhi Green Excellence building with the vertical sun clock facade"
+                  className="h-full w-full rounded-[1.4rem] object-cover"
+                />
+              </div>
+
+              <Card className="absolute -bottom-8 right-4 w-[18rem] border-0 bg-gray-950 text-white shadow-2xl sm:right-8">
+                <CardContent className="p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-300">
+                    Our Presence
+                  </p>
+                  <p className="mt-3 text-2xl font-bold">Ankleshwar, Gujarat</p>
+                  <p className="mt-3 text-sm leading-6 text-gray-300">
+                    A locally rooted team supporting clients with environmental insight, strategic clarity, and dependable execution.
+                  </p>
+                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-emerald-300">
+                    Growing with industry
+                    <ArrowRight className="h-4 w-4" />
                   </div>
-                </Reveal>
-              );
-            })}
-          </div>
+                </CardContent>
+              </Card>
+            </div>
+          </Reveal>
         </div>
 
-        {/* Expertise & Certifications */}
-        <div className="max-w-4xl mx-auto">
-          <Reveal className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Certifications & Expertise
+        <div className="about-story-grid mt-24 grid gap-8 lg:grid-cols-3">
+          <Reveal>
+            <Card className="about-story-card h-full rounded-[2rem] border border-orange-100 bg-gradient-to-br from-orange-50 to-white shadow-sm">
+              <CardContent className="p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-700">Mission</p>
+                <p className="mt-4 text-lg leading-8 text-gray-700">{aboutData.mission}</p>
+              </CardContent>
+            </Card>
           </Reveal>
-          <Accordion type="single" collapsible className="space-y-4">
-            {expertiseData.map((expertise, index) => (
-              <Reveal
-                key={index} 
-                delay={index * 100}
-              >
-                <AccordionItem 
-                  value={`item-${index}`}
-                  className="glass-panel rounded-2xl border-2 border-gray-100 bg-white/85 px-6 shadow-md transition-shadow hover:shadow-lg"
-                >
-                  <AccordionTrigger className="text-lg font-semibold text-gray-900 hover:text-emerald-600">
-                    {expertise.category}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <ul className="space-y-3 pt-2">
-                      {expertise.items.map((item, idx) => (
-                        <li key={idx} className="flex items-start space-x-3">
-                          <div className="w-2 h-2 rounded-full bg-emerald-600 mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
-              </Reveal>
-            ))}
-          </Accordion>
+
+          <Reveal delay={100}>
+            <Card className="about-story-card h-full rounded-[2rem] border border-emerald-100 bg-gradient-to-br from-white to-emerald-50 shadow-sm">
+              <CardContent className="p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-700">Vision</p>
+                <p className="mt-4 text-lg leading-8 text-gray-700">{aboutData.vision}</p>
+              </CardContent>
+            </Card>
+          </Reveal>
+
+          <Reveal delay={180}>
+            <Card className="about-story-card h-full rounded-[2rem] border border-gray-100 bg-gray-950 text-white shadow-sm">
+              <CardContent className="p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-300">Why Teams Choose Us</p>
+                <ul className="mt-5 space-y-4">
+                  {aboutData.values.map((value) => (
+                    <li key={value.title} className="border-b border-white/10 pb-4 last:border-b-0 last:pb-0">
+                      <p className="font-semibold">{value.title}</p>
+                      <p className="mt-1 text-sm leading-6 text-gray-300">{value.description}</p>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </Reveal>
         </div>
       </div>
     </section>
