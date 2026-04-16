@@ -68,7 +68,7 @@ export const AboutPage = () => {
     <main className="pt-20">
       <section
         ref={sectionRef}
-        className="relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white py-24"
+        className="relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white py-16 md:py-24"
       >
         <div
           className="absolute inset-0 opacity-60"
@@ -132,7 +132,7 @@ export const AboutPage = () => {
                 <Card className="rounded-[1.8rem] border border-slate-100 bg-white/95 shadow-[0_14px_40px_rgba(15,23,42,0.08)]">
                   <CardContent className="p-8 text-center">
                     <p
-                      className="about-page-stat-value bg-gradient-to-r from-slate-600 to-purple-600 bg-clip-text text-5xl font-bold text-transparent"
+                      className="about-page-stat-value bg-gradient-to-r from-slate-600 to-purple-600 bg-clip-text text-4xl sm:text-5xl font-bold text-transparent"
                       data-value={stat.value}
                     >
                       0+
@@ -144,7 +144,7 @@ export const AboutPage = () => {
             ))}
           </div>
 
-          <div className="mt-24">
+          <div className="mt-12 md:mt-24">
             <Reveal className="mb-12 text-center">
               <h2 className="text-4xl font-bold text-slate-900 sm:text-5xl">Our Core Values</h2>
             </Reveal>
@@ -156,7 +156,7 @@ export const AboutPage = () => {
                 return (
                   <Reveal key={value.title} delay={index * 80}>
                     <Card className="rounded-[2rem] border border-slate-100 bg-white/95 shadow-[0_14px_40px_rgba(15,23,42,0.08)]">
-                      <CardContent className="flex min-h-[300px] flex-col items-center justify-center p-8 text-center">
+                      <CardContent className="flex flex-col items-center justify-center p-6 sm:p-8 text-center py-8 sm:py-10">
                         <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-emerald-50 to-purple-50">
                           <Icon className="h-10 w-10 text-emerald-600" />
                         </div>
@@ -170,7 +170,7 @@ export const AboutPage = () => {
             </div>
           </div>
 
-          <div className="mt-24 max-w-5xl mx-auto">
+          <div className="mt-12 md:mt-24 max-w-5xl mx-auto">
             <Reveal className="mb-12 text-center">
               <h2 className="text-4xl font-bold text-slate-900 sm:text-5xl">
                 Certifications & Expertise
@@ -182,7 +182,7 @@ export const AboutPage = () => {
                 <Reveal key={expertise.category} delay={index * 90}>
                   <AccordionItem
                     value={`about-item-${index}`}
-                    className="rounded-[1.8rem] border border-slate-100 bg-white/95 px-8 shadow-[0_14px_40px_rgba(15,23,42,0.08)]"
+                    className="rounded-[1.8rem] border border-slate-100 bg-white/95 px-4 sm:px-8 shadow-[0_14px_40px_rgba(15,23,42,0.08)]"
                   >
                     <AccordionTrigger className="py-6 text-xl font-semibold text-slate-900 hover:no-underline">
                       {expertise.category}

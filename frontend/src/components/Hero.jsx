@@ -127,17 +127,17 @@ export const Hero = () => {
   };
 
   return (
-    <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-purple-50">
+    <section ref={sectionRef} id="home" className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-purple-50">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div data-speed="slow" className="hero-orb absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl animate-pulse"></div>
         <div data-speed="fast" className="hero-orb absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-8 lg:pb-0">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}
-          <div ref={contentRef} className="hero-copy text-center lg:text-left space-y-8">
+          <div ref={contentRef} className="hero-copy text-center lg:text-left space-y-6 lg:space-y-8">
             {/* Badge */}
             <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-emerald-200">
               <Award className="w-4 h-4 text-emerald-600" />
@@ -145,44 +145,44 @@ export const Hero = () => {
             </div>
 
             {/* Main Heading */}
-            <div className="space-y-4">
+            <div className="space-y-3 lg:space-y-4">
               <p className="text-sm font-semibold uppercase tracking-[0.28em] text-purple-700">
                 {heroData.subtitle}
               </p>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight">
                 <span className="text-gray-900">Leading the Way in</span>
                 <br />
                 <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-purple-600 bg-clip-text text-transparent">
                   Environmental Excellence
                 </span>
               </h1>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
+              <p className="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
                 {heroData.description}
               </p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button 
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+              <Button
                 onClick={() => scrollToSection('contact')}
                 size="lg"
-                className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white px-8 py-6 rounded-full text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group"
+                className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white px-8 py-5 sm:py-6 rounded-full text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group"
               >
                 {heroData.cta.primary}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button 
+              <Button
                 onClick={() => scrollToSection('services')}
                 size="lg"
                 variant="outline"
-                className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-8 py-6 rounded-full text-lg transition-all duration-300"
+                className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-8 py-5 sm:py-6 rounded-full text-base sm:text-lg transition-all duration-300"
               >
                 {heroData.cta.secondary}
               </Button>
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap gap-8 justify-center lg:justify-start pt-8">
+            <div className="flex flex-wrap gap-4 sm:gap-8 justify-center lg:justify-start pt-4 sm:pt-8">
               <div className="flex items-center space-x-2">
                 <Shield className="w-5 h-5 text-emerald-600" />
                 <span className="text-sm text-gray-600 font-medium">NABET Accredited</span>
@@ -198,7 +198,35 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Hero Image/Illustration */}
+          {/* Mobile Hero Image — visible on small/medium screens only */}
+          <div className="lg:hidden w-full">
+            <div className="relative w-full h-56 sm:h-72 rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src={activeHeroImage.src}
+                alt={activeHeroImage.alt}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/20 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4">
+                <div className="flex items-center justify-between">
+                  <div className="text-center">
+                    <p className="text-xl font-bold text-emerald-600">500+</p>
+                    <p className="text-xs text-gray-600">Projects</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-xl font-bold text-purple-600">200+</p>
+                    <p className="text-xs text-gray-600">Clients</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-xl font-bold text-emerald-600">15+</p>
+                    <p className="text-xs text-gray-600">Years</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Hero Image/Illustration — desktop only */}
           <div className="relative hidden lg:block">
             <div ref={visualRef} className="hero-visual-shell relative w-full h-[600px] rounded-3xl overflow-hidden shadow-2xl">
               {heroImages.map((image, index) => (

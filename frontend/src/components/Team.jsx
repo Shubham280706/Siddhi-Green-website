@@ -49,7 +49,7 @@ export const Team = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="team" className="relative overflow-hidden py-24 bg-gradient-to-b from-white to-purple-50">
+    <section ref={sectionRef} id="team" className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-white to-purple-50">
       <div className="motion-mesh">
         <div className="motion-grid"></div>
         <div className="section-orb left-[-5rem] bottom-16 h-72 w-72 bg-purple-200/30"></div>
@@ -115,16 +115,16 @@ export const Team = () => {
 
         {/* Join Team CTA */}
         <Reveal className="mt-16 text-center" delay={160}>
-          <div className="project-sheen glass-panel max-w-3xl mx-auto rounded-3xl border-2 border-gray-100 bg-white/90 p-12 shadow-xl">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+          <div className="project-sheen glass-panel max-w-3xl mx-auto rounded-3xl border-2 border-gray-100 bg-white/90 p-6 sm:p-12 shadow-xl">
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
               Join Our Team
             </h3>
-            <p className="text-gray-600 text-lg mb-8">
+            <p className="text-gray-600 text-base sm:text-lg mb-6 sm:mb-8">
               We're always looking for talented environmental professionals to join our growing team
             </p>
-            <Button 
+            <Button
               size="lg"
-              className="bg-gradient-to-r from-emerald-600 to-purple-600 hover:from-emerald-700 hover:to-purple-700 text-white px-8 py-6 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-gradient-to-r from-emerald-600 to-purple-600 hover:from-emerald-700 hover:to-purple-700 text-white px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
               View Career Opportunities
             </Button>

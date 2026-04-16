@@ -117,7 +117,7 @@ export const Contact = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="contact" className="relative overflow-hidden py-24 bg-gradient-to-b from-emerald-50 to-white">
+    <section ref={sectionRef} id="contact" className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-emerald-50 to-white">
       <div className="motion-mesh">
         <div className="motion-grid"></div>
         <div className="section-orb left-[-5rem] top-24 h-80 w-80 bg-emerald-200/30"></div>
@@ -137,10 +137,10 @@ export const Contact = () => {
           </p>
         </Reveal>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           <Reveal direction="left">
           <Card className="glass-panel tilt-card shadow-xl border-2 border-gray-100 bg-white/88">
-            <CardContent className="p-8">
+            <CardContent className="p-4 sm:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -411,7 +411,7 @@ export const Contact = () => {
                     </a>
                   </div>
 
-                  <div className="relative h-[420px] w-full bg-gray-100">
+                  <div className="relative h-[240px] sm:h-[420px] w-full bg-gray-100">
                     <iframe
                       title={`${activeOffice.title} Google Map`}
                       src={activeOfficeMapUrl}

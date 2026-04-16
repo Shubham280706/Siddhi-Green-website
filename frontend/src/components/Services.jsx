@@ -100,7 +100,7 @@ export const Services = () => {
   };
 
   return (
-    <section ref={sectionRef} id="services" className="relative overflow-hidden py-24 bg-white">
+    <section ref={sectionRef} id="services" className="relative overflow-hidden py-16 md:py-24 bg-white">
       <div className="motion-mesh">
         <div className="motion-grid"></div>
         <div className="services-spotlight section-orb top-10 left-[-8rem] h-72 w-72 bg-emerald-200/40"></div>
@@ -172,17 +172,17 @@ export const Services = () => {
 
         {/* CTA Section */}
         <Reveal className="mt-16 text-center" delay={180}>
-          <div className="project-sheen rounded-3xl bg-gradient-to-r from-emerald-600 to-purple-600 p-12 shadow-2xl">
-            <h3 className="text-3xl font-bold text-white mb-4">
+          <div className="project-sheen rounded-3xl bg-gradient-to-r from-emerald-600 to-purple-600 p-6 sm:p-12 shadow-2xl">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
               Need Expert Environmental Consultation?
             </h3>
-            <p className="text-emerald-50 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-emerald-50 text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
               Our team of certified environmental consultants is ready to help you achieve compliance and sustainability goals
             </p>
-            <Button 
+            <Button
               size="lg"
               onClick={scrollToContact}
-              className="bg-white text-emerald-600 hover:bg-gray-100 px-8 py-6 rounded-full text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+              className="bg-white text-emerald-600 hover:bg-gray-100 px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
             >
               Request a Consultation
             </Button>

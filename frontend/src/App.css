@@ -366,20 +366,56 @@ img {
     image-rendering: -webkit-optimize-contrast;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
+/* Custom scrollbar — desktop only */
+@media (hover: hover) and (pointer: fine) {
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #10b981;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #059669;
+    }
 }
 
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
+/* 3-D tilt only on true hover-capable devices (desktop).
+   On touch screens it creates stuck transforms and looks broken. */
+@media (hover: hover) and (pointer: fine) {
+    .tilt-card:hover {
+        transform: translateY(-10px) rotateX(7deg) rotateY(-6deg);
+    }
 }
 
-::-webkit-scrollbar-thumb {
-    background: #10b981;
-    border-radius: 5px;
+/* Override the unconditional rule defined above so mobile isn't affected */
+@media not all and (hover: hover) {
+    .tilt-card:hover {
+        transform: none;
+    }
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #059669;
+/* Comfortable tap targets on touch screens */
+@media (hover: none) {
+    button,
+    a,
+    [role="button"] {
+        touch-action: manipulation;
+        min-height: 44px;
+    }
+}
+
+/* Prevent iOS font-size inflation on form inputs */
+@media screen and (max-width: 767px) {
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
 }

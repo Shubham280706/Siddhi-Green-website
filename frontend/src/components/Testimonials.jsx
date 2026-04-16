@@ -62,7 +62,7 @@ export const Testimonials = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden py-24 bg-white">
+    <section ref={sectionRef} className="relative overflow-hidden py-16 md:py-24 bg-white">
       <div className="motion-mesh">
         <div className="testimonial-orb section-orb left-[-7rem] top-24 h-80 w-80 bg-emerald-200/30"></div>
         <div className="section-orb section-orb-delay bottom-[-4rem] right-[-4rem] h-72 w-72 bg-purple-200/30"></div>

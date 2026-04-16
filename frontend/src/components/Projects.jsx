@@ -74,7 +74,7 @@ export const Projects = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="projects" className="relative overflow-hidden bg-white py-24 lg:py-16">
+    <section ref={sectionRef} id="projects" className="relative overflow-hidden bg-white py-16 md:py-24">
       <div className="motion-mesh">
         <div className="section-orb left-[-6rem] top-20 h-80 w-80 bg-emerald-200/25"></div>
         <div className="section-orb section-orb-delay bottom-0 right-[-4rem] h-72 w-72 bg-purple-200/30"></div>
