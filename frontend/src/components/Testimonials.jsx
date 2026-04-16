@@ -54,6 +54,23 @@ export const Testimonials = () => {
           },
         },
       );
+
+      // Depth-stagger parallax — each card scrolls at a slightly different rate
+      // creating a layered depth illusion as the user scrolls through
+      const scrubSpeeds = [1.8, 1.1, 0.7];
+      const yAmounts   = [-20, -32, -24];
+      gsap.utils.toArray('.testimonial-card').forEach((card, i) => {
+        gsap.to(card, {
+          y: yAmounts[i % yAmounts.length],
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section.querySelector('.testimonials-grid'),
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: scrubSpeeds[i % scrubSpeeds.length],
+          },
+        });
+      });
     }, section);
 
     return () => {

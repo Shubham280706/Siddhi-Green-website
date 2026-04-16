@@ -114,6 +114,32 @@ export const Hero = () => {
           scrub: 1.6,
         },
       });
+
+      // Multi-layer floating shapes — each at a different depth/speed
+      const floatingShapes = [
+        { selector: '.px-shape-ring-sm',  yPercent: -55, xPercent:  6, scrub: 1.0 },
+        { selector: '.px-shape-diamond',  yPercent: -80, xPercent: -10, scrub: 0.8 },
+        { selector: '.px-shape-ring-lg',  yPercent: -30, xPercent:  5, scrub: 1.8 },
+        { selector: '.px-shape-dot-lg',   yPercent: -95, xPercent:  8, scrub: 0.6 },
+        { selector: '.px-shape-dot-sm',   yPercent: -50, xPercent: -6, scrub: 1.2 },
+        { selector: '.px-shape-cross',    yPercent: -70, xPercent:  4, scrub: 0.9 },
+      ];
+
+      floatingShapes.forEach(({ selector, yPercent, xPercent, scrub }) => {
+        const el = section.querySelector(selector);
+        if (!el) return;
+        gsap.to(el, {
+          yPercent,
+          xPercent,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: 'bottom top',
+            scrub,
+          },
+        });
+      });
     }, section);
 
     return () => context.revert();
@@ -132,6 +158,25 @@ export const Hero = () => {
       <div className="absolute inset-0 overflow-hidden">
         <div data-speed="slow" className="hero-orb absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl animate-pulse"></div>
         <div data-speed="fast" className="hero-orb absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
+
+      {/* Floating geometric shapes — desktop parallax depth layer */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden hidden lg:block" aria-hidden="true">
+        {/* Slow: emerald ring small — top-left area */}
+        <div className="px-shape-ring-sm absolute top-[18%] left-[6%] h-14 w-14 rounded-full border-2 border-emerald-400/30" />
+        {/* Fast: purple diamond — top-right area */}
+        <div className="px-shape-diamond absolute top-[28%] right-[10%] h-9 w-9 rotate-45 rounded-sm border-2 border-purple-400/25" />
+        {/* Slowest: large ghost ring — mid-left */}
+        <div className="px-shape-ring-lg absolute top-[48%] left-[4%] h-36 w-36 rounded-full border border-emerald-300/15" />
+        {/* Fastest: solid dot — upper-right */}
+        <div className="px-shape-dot-lg absolute top-[12%] right-[28%] h-5 w-5 rounded-full bg-purple-400/20" />
+        {/* Medium: small emerald dot — lower-left */}
+        <div className="px-shape-dot-sm absolute top-[65%] left-[14%] h-3 w-3 rounded-full bg-emerald-500/25" />
+        {/* Cross / plus mark — mid-right area */}
+        <div className="px-shape-cross absolute top-[42%] right-[6%] h-8 w-8 opacity-20">
+          <div className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 bg-emerald-600 rounded-full" />
+          <div className="absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 bg-emerald-600 rounded-full" />
+        </div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-8 lg:pb-0">

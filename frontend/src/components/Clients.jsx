@@ -38,6 +38,26 @@ export const Clients = () => {
           },
         },
       );
+
+      // Showcase image parallax — image moves slightly slower than scroll
+      const showcase = section.querySelector('.clients-showcase-img');
+      if (showcase) {
+        gsap.fromTo(
+          showcase,
+          { yPercent: -6, scale: 1.08 },
+          {
+            yPercent: 4,
+            scale: 1.01,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section.querySelector('.clients-showcase-wrap'),
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.4,
+            },
+          },
+        );
+      }
     }, section);
 
     return () => context.revert();
@@ -63,11 +83,11 @@ export const Clients = () => {
           </p>
         </Reveal>
 
-        <div className="mx-auto mb-10 max-w-6xl overflow-hidden rounded-[2rem] border border-white/80 bg-white/90 p-3 shadow-[0_24px_70px_rgba(15,23,42,0.10)]">
+        <div className="clients-showcase-wrap mx-auto mb-10 max-w-6xl overflow-hidden rounded-[2rem] border border-white/80 bg-white/90 p-3 shadow-[0_24px_70px_rgba(15,23,42,0.10)]">
           <img
             src="/clients-showcase-reference.png"
             alt="Client showcase reference"
-            className="h-full w-full rounded-[1.5rem] object-cover"
+            className="clients-showcase-img h-full w-full rounded-[1.5rem] object-cover will-change-transform"
           />
         </div>
 

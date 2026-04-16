@@ -59,6 +59,38 @@ export const AboutPage = () => {
           },
         });
       });
+
+      // Stat cards — alternating parallax depths to create a floating shelf effect
+      const statCards = gsap.utils.toArray('.about-stat-card');
+      const statYAmounts = [-22, -14, -28, -18];
+      const statScrubs   = [1.6, 1.0, 1.9, 1.2];
+      statCards.forEach((card, i) => {
+        gsap.to(card, {
+          y: statYAmounts[i % statYAmounts.length],
+          ease: 'none',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: statScrubs[i % statScrubs.length],
+          },
+        });
+      });
+
+      // Values cards — subtle upward float at different rates
+      const valueCards = gsap.utils.toArray('.about-value-card');
+      valueCards.forEach((card, i) => {
+        gsap.to(card, {
+          y: i % 2 === 0 ? -16 : -26,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: i % 2 === 0 ? 1.4 : 0.9,
+          },
+        });
+      });
     }, section);
 
     return () => context.revert();
@@ -129,7 +161,7 @@ export const AboutPage = () => {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {aboutData.stats.map((stat, index) => (
               <Reveal key={stat.label} delay={index * 70}>
-                <Card className="rounded-[1.8rem] border border-slate-100 bg-white/95 shadow-[0_14px_40px_rgba(15,23,42,0.08)]">
+                <Card className="about-stat-card rounded-[1.8rem] border border-slate-100 bg-white/95 shadow-[0_14px_40px_rgba(15,23,42,0.08)] will-change-transform">
                   <CardContent className="p-8 text-center">
                     <p
                       className="about-page-stat-value bg-gradient-to-r from-slate-600 to-purple-600 bg-clip-text text-4xl sm:text-5xl font-bold text-transparent"
@@ -155,7 +187,7 @@ export const AboutPage = () => {
 
                 return (
                   <Reveal key={value.title} delay={index * 80}>
-                    <Card className="rounded-[2rem] border border-slate-100 bg-white/95 shadow-[0_14px_40px_rgba(15,23,42,0.08)]">
+                    <Card className="about-value-card rounded-[2rem] border border-slate-100 bg-white/95 shadow-[0_14px_40px_rgba(15,23,42,0.08)] will-change-transform">
                       <CardContent className="flex flex-col items-center justify-center p-6 sm:p-8 text-center py-8 sm:py-10">
                         <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-emerald-50 to-purple-50">
                           <Icon className="h-10 w-10 text-emerald-600" />

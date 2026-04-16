@@ -43,6 +43,28 @@ export const Team = () => {
           },
         },
       );
+
+      // Portrait image parallax — image moves slower than its card container
+      const teamCards = gsap.utils.toArray('.team-card');
+      teamCards.forEach((card) => {
+        const img = card.querySelector('.team-portrait-img');
+        if (!img) return;
+        gsap.fromTo(
+          img,
+          { yPercent: -8, scale: 1.12 },
+          {
+            yPercent: 8,
+            scale: 1.02,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.3,
+            },
+          },
+        );
+      });
     }, section);
 
     return () => context.revert();
@@ -77,10 +99,10 @@ export const Team = () => {
             >
               <Card className="team-card tilt-card glass-panel group overflow-hidden border-2 border-white/70 bg-white/90 transition-all duration-300 hover:border-emerald-200 hover:shadow-2xl">
                 <div className="relative h-72 overflow-hidden">
-                  <img 
+                  <img
                     src={member.image}
                     alt={member.name}
-                    className="portrait-rise w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="team-portrait-img w-full h-full object-cover will-change-transform"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   

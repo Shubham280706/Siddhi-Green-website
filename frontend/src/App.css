@@ -419,3 +419,33 @@ img {
         font-size: 16px;
     }
 }
+
+/* ── Parallax floating shapes ───────────────────────────────────────────── */
+/* Shared base: GPU-accelerated, pointer-events off, will-change */
+[class^="px-shape-"],
+[class*=" px-shape-"] {
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* ── Reduced-motion safety ──────────────────────────────────────────────── */
+/* Disable ALL scroll-triggered parallax for users who prefer reduced motion.
+   GSAP respects this via gsap.config if configured; the CSS rule below also
+   locks any lingering transform in place at the element level. */
+@media (prefers-reduced-motion: reduce) {
+    [class^="px-shape-"],
+    [class*=" px-shape-"],
+    .hero-orb,
+    .section-orb,
+    .motion-grid,
+    .team-portrait-img,
+    .clients-showcase-img,
+    .project-parallax-image,
+    .testimonial-card,
+    .about-stat-card,
+    .about-value-card {
+        transform: none !important;
+        animation: none !important;
+        transition: none !important;
+    }
+}
