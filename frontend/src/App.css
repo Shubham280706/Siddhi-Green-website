@@ -420,6 +420,16 @@ img {
     }
 }
 
+/* ── Timeline node glows ────────────────────────────────────────────────── */
+.tl-node-em {
+    border-color: #10b981;
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.08), 0 0 22px rgba(16, 185, 129, 0.5);
+}
+.tl-node-pu {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 6px rgba(168, 85, 247, 0.08), 0 0 22px rgba(168, 85, 247, 0.5);
+}
+
 /* ── Parallax floating shapes ───────────────────────────────────────────── */
 /* Shared base: GPU-accelerated, pointer-events off, will-change */
 [class^="px-shape-"],

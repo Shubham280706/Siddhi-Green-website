@@ -4,6 +4,7 @@ import { Services } from './Services';
 import { About } from './About';
 import { Projects } from './Projects';
 import { Team } from './Team';
+import { CompanyTimeline } from './CompanyTimeline';
 import { Testimonials } from './Testimonials';
 import { Contact } from './Contact';
 
@@ -15,6 +16,7 @@ export const HomePage = () => {
       <About />
       <Projects />
       <Team />
+      <CompanyTimeline />
       <Testimonials />
       <Contact />
     </main>
