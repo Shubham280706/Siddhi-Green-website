@@ -24,25 +24,25 @@ const iconMap = {
   sparkles: Sparkles,
 };
 
-/* ─── Sub-components ──────────────────────────────────────────────────────── */
+/* ─── Card ────────────────────────────────────────────────────────────────── */
 
 const TLCard = ({ item, Icon, isRight = false }) => {
   const em = item.color === 'emerald';
   return (
     <div
-      className={`group relative overflow-hidden rounded-2xl border p-5 sm:p-6
-        backdrop-blur-sm transition-all duration-300 hover:scale-[1.025]
-        bg-white/[0.03]
+      className={`group relative overflow-hidden rounded-2xl border-2 p-5 sm:p-6
+        bg-white/90 backdrop-blur-sm shadow-[0_18px_48px_rgba(15,23,42,0.07)]
+        transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(15,23,42,0.12)]
         ${em
-          ? 'border-emerald-500/20 hover:border-emerald-500/40'
-          : 'border-purple-500/20 hover:border-purple-500/40'
+          ? 'border-emerald-100 hover:border-emerald-200'
+          : 'border-purple-100 hover:border-purple-200'
         }`}
     >
       {/* Large year watermark */}
       <span
         className={`pointer-events-none select-none absolute -top-3 text-[5.5rem] font-black leading-none
           ${isRight ? 'left-3' : 'right-3'}
-          ${em ? 'text-emerald-500/[0.07]' : 'text-purple-500/[0.07]'}`}
+          ${em ? 'text-emerald-500/[0.06]' : 'text-purple-500/[0.06]'}`}
       >
         {item.year}
       </span>
@@ -51,37 +51,39 @@ const TLCard = ({ item, Icon, isRight = false }) => {
       <div className="relative flex items-center justify-between mb-4">
         <span
           className={`inline-block rounded-full px-3 py-1 text-[10px] font-semibold tracking-[0.2em] uppercase
-            ${em ? 'bg-emerald-500/10 text-emerald-400' : 'bg-purple-500/10 text-purple-400'}`}
+            ${em ? 'bg-emerald-100 text-emerald-700' : 'bg-purple-100 text-purple-700'}`}
         >
           {item.category}
         </span>
         <div
           className={`flex h-9 w-9 items-center justify-center rounded-xl
-            ${em ? 'bg-emerald-500/10' : 'bg-purple-500/10'}`}
+            ${em ? 'bg-emerald-100' : 'bg-purple-100'}`}
         >
           {Icon && (
-            <Icon className={`h-4 w-4 ${em ? 'text-emerald-400' : 'text-purple-400'}`} />
+            <Icon className={`h-4 w-4 ${em ? 'text-emerald-600' : 'text-purple-600'}`} />
           )}
         </div>
       </div>
 
-      {/* Year label — mobile only (desktop shows it under the node) */}
-      <p className={`md:hidden mb-1 text-xs font-bold ${em ? 'text-emerald-500' : 'text-purple-500'}`}>
+      {/* Year label — mobile only */}
+      <p className={`md:hidden mb-1 text-xs font-bold ${em ? 'text-emerald-600' : 'text-purple-600'}`}>
         {item.year}
       </p>
 
       {/* Title */}
-      <h3 className="relative text-lg font-bold text-white mb-2 leading-snug group-hover:text-white/90 transition-colors">
+      <h3 className="relative text-lg font-bold text-gray-900 mb-2 leading-snug group-hover:text-emerald-700 transition-colors">
         {item.title}
       </h3>
 
       {/* Description */}
-      <p className="relative text-sm leading-relaxed text-white/45 group-hover:text-white/60 transition-colors">
+      <p className="relative text-sm leading-relaxed text-gray-500 group-hover:text-gray-600 transition-colors">
         {item.description}
       </p>
     </div>
   );
 };
+
+/* ─── Node ────────────────────────────────────────────────────────────────── */
 
 const TLNode = ({ item, Icon, large = false }) => {
   const em = item.color === 'emerald';
@@ -89,10 +91,10 @@ const TLNode = ({ item, Icon, large = false }) => {
   const iSize = large ? 'h-6 w-6'  : 'h-5 w-5';
   return (
     <div
-      className={`tl-node relative flex ${size} shrink-0 items-center justify-center rounded-full border-2 bg-gray-950 z-10
+      className={`tl-node relative flex ${size} shrink-0 items-center justify-center rounded-full border-2 bg-white z-10
         ${em ? 'tl-node-em' : 'tl-node-pu'}`}
     >
-      {Icon && <Icon className={`${iSize} ${em ? 'text-emerald-400' : 'text-purple-400'}`} />}
+      {Icon && <Icon className={`${iSize} ${em ? 'text-emerald-600' : 'text-purple-600'}`} />}
     </div>
   );
 };
@@ -186,28 +188,28 @@ export const CompanyTimeline = () => {
     <section
       ref={sectionRef}
       id="timeline"
-      className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-gray-950 via-[#060e0b] to-gray-950"
+      className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-purple-50 via-white to-emerald-50/40"
     >
-      {/* Background decorations */}
+      {/* Background decorations — match site's light orb style */}
       <div className="motion-mesh">
-        <div className="motion-grid opacity-20" />
-        <div className="section-orb left-[-6rem] top-24 h-96 w-96 bg-emerald-500/10" />
-        <div className="section-orb section-orb-delay bottom-[-6rem] right-[-4rem] h-80 w-80 bg-purple-500/10" />
+        <div className="motion-grid" />
+        <div className="section-orb left-[-6rem] top-24 h-96 w-96 bg-emerald-200/25" />
+        <div className="section-orb section-orb-delay bottom-[-6rem] right-[-4rem] h-80 w-80 bg-purple-200/20" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <Reveal className="mb-16 md:mb-20 text-center space-y-4">
-          <Badge className="border border-emerald-500/30 bg-emerald-500/10 px-4 py-1 text-emerald-400 hover:bg-emerald-500/10">
+          <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100 px-4 py-1">
             Our Journey
           </Badge>
-          <h2 className="text-4xl sm:text-5xl font-bold text-white">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
             25 Years of{' '}
-            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-purple-600 bg-clip-text text-transparent">
               Environmental Excellence
             </span>
           </h2>
-          <p className="mx-auto max-w-2xl text-base sm:text-lg text-white/55">
+          <p className="mx-auto max-w-2xl text-base sm:text-lg text-gray-600">
             From a two-person consultancy in Ankleshwar to one of Gujarat's most trusted environmental firms
             — a story written one project at a time.
           </p>
@@ -216,14 +218,14 @@ export const CompanyTimeline = () => {
         {/* ── Timeline ──────────────────────────────────────────────────────── */}
         <div className="tl-track relative max-w-5xl mx-auto">
           {/* Background track line */}
-          <div className="pointer-events-none absolute left-6 top-0 bottom-0 w-px bg-white/5 md:left-1/2 md:-translate-x-1/2" />
+          <div className="pointer-events-none absolute left-6 top-0 bottom-0 w-px bg-gray-200 md:left-1/2 md:-translate-x-1/2" />
           {/* Animated fill line */}
-          <div className="tl-line-fill pointer-events-none absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-400 via-teal-300 to-purple-500 md:left-1/2 md:-translate-x-1/2" />
+          <div className="tl-line-fill pointer-events-none absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500 via-emerald-400 to-purple-500 md:left-1/2 md:-translate-x-1/2" />
 
           <div className="flex flex-col">
             {timelineData.map((item, index) => {
               const Icon   = iconMap[item.icon];
-              const isEven = index % 2 === 0; // even = card on left (desktop)
+              const isEven = index % 2 === 0;
               const em     = item.color === 'emerald';
 
               return (
@@ -231,11 +233,9 @@ export const CompanyTimeline = () => {
 
                   {/* ── MOBILE layout ─────────────────────────────────── */}
                   <div className="md:hidden flex items-start">
-                    {/* Node — absolute on the left line */}
                     <div className="absolute left-0 top-6 z-10">
                       <TLNode item={item} Icon={Icon} />
                     </div>
-                    {/* Card — offset right of node */}
                     <div className="tl-card-mb ml-16 flex-1 min-w-0">
                       <TLCard item={item} Icon={Icon} />
                     </div>
@@ -258,16 +258,11 @@ export const CompanyTimeline = () => {
                       <TLNode item={item} Icon={Icon} large />
                       <span
                         className={`text-[10px] font-bold tracking-[0.22em] uppercase
-                          ${em ? 'text-emerald-500' : 'text-purple-500'}`}
+                          ${em ? 'text-emerald-600' : 'text-purple-600'}`}
                       >
                         {item.year}
                       </span>
-
-                      {/* Connector dot */}
-                      <div
-                        className={`w-px flex-1 min-h-[2rem]
-                          ${em ? 'bg-emerald-500/15' : 'bg-purple-500/15'}`}
-                      />
+                      <div className={`w-px flex-1 min-h-[2rem] ${em ? 'bg-emerald-200' : 'bg-purple-200'}`} />
                     </div>
 
                     {/* Right column */}
@@ -285,12 +280,12 @@ export const CompanyTimeline = () => {
             })}
           </div>
 
-          {/* End cap — "and beyond" */}
+          {/* End cap */}
           <div className="relative flex flex-col items-center gap-3 pt-2 pb-4 md:ml-[calc(50%-1.375rem)]">
-            <div className="tl-node flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/10 bg-gray-900">
-              <span className="text-white/30 text-xs font-bold">···</span>
+            <div className="tl-node flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-200 bg-white shadow-sm">
+              <span className="text-gray-400 text-xs font-bold">···</span>
             </div>
-            <p className="text-xs text-white/25 tracking-widest uppercase font-medium">The story continues</p>
+            <p className="text-xs text-gray-400 tracking-widest uppercase font-medium">The story continues</p>
           </div>
         </div>
       </div>
