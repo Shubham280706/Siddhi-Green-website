@@ -27,26 +27,45 @@ export const Contact = () => {
     service: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock form submission
-    console.log('Form submitted:', formData);
-    
-    toast({
-      title: "Thank you for your inquiry!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      service: '',
-      message: ''
-    });
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const res = await fetch(`${backendUrl}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const json = await res.json();
+
+      if (!res.ok) {
+        const detail = json?.detail;
+        const msg = Array.isArray(detail)
+          ? detail.map((d) => d.msg).join(', ')
+          : (detail || 'Something went wrong. Please try again.');
+        throw new Error(msg);
+      }
+
+      toast({
+        title: "Thank you for your inquiry!",
+        description: "We'll get back to you within 24 hours.",
+      });
+
+      setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
+    } catch (err) {
+      toast({
+        title: "Submission failed",
+        description: err.message || "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (field, value) => {
@@ -224,13 +243,14 @@ export const Contact = () => {
                   />
                 </div>
 
-                <Button 
+                <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white py-6 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white py-6 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 group disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Send Message
-                  <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {isSubmitting ? 'Sending…' : 'Send Message'}
+                  {!isSubmitting && <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                 </Button>
               </form>
             </CardContent>
