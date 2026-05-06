@@ -95,28 +95,28 @@ export const Header = () => {
         onMouseLeave={() => setIsTopHoverActive(false)}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-14">
             {/* Logo */}
             <div
-              className="flex items-center gap-3 cursor-pointer"
+              className="flex items-center gap-2.5 cursor-pointer"
               onClick={() => navigate('/')}
             >
               <div className="brand-logo-shell hidden sm:flex">
-                <BrandLogo className="h-14 w-14 shrink-0" compact />
+                <BrandLogo className="h-10 w-10 shrink-0" compact />
               </div>
               <div className="min-w-0">
-                <h1 className="text-lg sm:text-xl font-bold text-gray-900 leading-tight">Siddhi Green Excellence</h1>
-                <p className="text-xs text-emerald-700 font-medium tracking-[0.18em] uppercase">Environmental Consultancy</p>
+                <h1 className="text-base sm:text-lg font-bold text-gray-900 leading-tight">Siddhi Green Excellence</h1>
+                <p className="text-[10px] text-emerald-700 font-medium tracking-[0.18em] uppercase">Environmental Consultancy</p>
               </div>
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-6">
               {navItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => handleNavigation(item)}
-                  className="text-gray-700 hover:text-emerald-600 font-medium transition-colors duration-200 relative group"
+                  className="text-sm text-gray-700 hover:text-emerald-600 font-medium transition-colors duration-200 relative group"
                 >
                   {item.label}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-600 group-hover:w-full transition-all duration-300"></span>
@@ -128,7 +128,7 @@ export const Header = () => {
             <div className="hidden md:block">
               <Button
                 onClick={() => handleNavigation({ id: 'contact' })}
-                className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white text-sm px-5 py-1.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 Get Consultation
               </Button>
