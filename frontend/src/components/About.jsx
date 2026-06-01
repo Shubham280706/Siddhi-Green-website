@@ -104,7 +104,7 @@ export const About = () => {
                 <Sparkles className="h-4 w-4" />
                 {aboutData.tagline}
               </div>
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              <div className="about-story-grid mt-6 grid gap-4 sm:grid-cols-3">
                 {aboutData.highlights.map((highlight, index) => {
                   const Icon = featureIcons[index];
 

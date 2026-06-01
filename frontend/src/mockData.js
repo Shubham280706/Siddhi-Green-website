@@ -1,9 +1,42 @@
 // Mock data for Siddhi Green Excellence
 
+export const navigationData = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  {
+    label: "Services",
+    href: "/services",
+    submenu: [
+      { label: "Lab Testing Facility", href: "/lab-testing-facility" },
+      { label: "Environmental Consultancy", href: "/environmental-consultancy" },
+      { label: "Safety Services, Testing & Certification", href: "/safety-services" },
+      { label: "Training Services", href: "/training-services" },
+      { label: "EIA Studies", href: "/eia-studies" }
+    ]
+  },
+  { label: "Success Stories", href: "/success-stories" },
+  { label: "FAQ's", href: "/faqs" },
+  { label: "Blog", href: "/blog" },
+  { label: "Working at Siddhi", href: "/careers" },
+  { label: "Downloads", href: "/downloads" },
+  {
+    label: "360° Office Tour",
+    href: "/office-tour",
+    submenu: [
+      { label: "Ground Floor", href: "/office-tour/ground-floor" },
+      { label: "First Floor", href: "/office-tour/first-floor" },
+      { label: "Second Floor", href: "/office-tour/second-floor" },
+      { label: "Micro Lab", href: "/office-tour/micro-lab" },
+      { label: "Terrace + Sunclock", href: "/office-tour/terrace" }
+    ]
+  },
+  { label: "Contact Us", href: "/contact" }
+];
+
 export const heroData = {
   title: "Leading the Way in Environmental Excellence",
-  subtitle: "Siddhi Green Excellence",
-  description: "Providing comprehensive environmental solutions with expertise, innovation, and commitment to sustainable development.",
+  subtitle: "Siddhi Green Excellence Private Limited",
+  description: "Leading Environmental Management Company serving multitude of companies since 2001.",
   cta: {
     primary: "Get Started",
     secondary: "Our Services"
@@ -13,45 +46,57 @@ export const heroData = {
 export const servicesData = [
   {
     id: 1,
-    title: "Environmental Impact Assessment (EIA)",
-    description: "Comprehensive EIA studies for industrial, infrastructure, and development projects ensuring regulatory compliance and sustainable practices.",
-    icon: "leaf",
-    features: ["Baseline Studies", "Impact Prediction", "Mitigation Plans", "Public Consultation"]
+    title: "Laboratory Testing Facility",
+    description: "Comprehensive water, wastewater, and pharmaceutical testing services handling over 600 samples per month with annual contracts for 50+ clients.",
+    icon: "flask",
+    image: "https://siddhigreen.com/wp-content/uploads/2022/03/Lab-2.png",
+    features: ["Water & Wastewater Analysis", "Biological & Microbiological Testing", "Chemical & Physiochemical Testing", "600+ Samples Monthly"],
+    url: "/lab-testing-facility/"
   },
   {
     id: 2,
-    title: "Sustainability Consulting",
-    description: "Strategic guidance to integrate sustainable practices into your business operations and achieve environmental goals.",
-    icon: "recycle",
-    features: ["Carbon Footprint Analysis", "Sustainability Roadmap", "ESG Reporting", "Green Certifications"]
+    title: "Environmental Consultancy",
+    description: "Expert guidance through project phases, operations, and compliance management ensuring sustainable environmental practices.",
+    icon: "leaf",
+    image: "https://siddhigreen.com/wp-content/uploads/2022/03/Environmental-Consultancy-2.png",
+    features: ["Project Phase Support", "Operations Phase Management", "EHS Compliances", "EMS Improvement"],
+    url: "/environmental-consultancy/"
   },
   {
     id: 3,
-    title: "Waste Management Solutions",
-    description: "Innovative waste management strategies for efficient resource utilization and environmental protection.",
-    icon: "trash-2",
-    features: ["Waste Audits", "Recycling Programs", "Hazardous Waste Management", "Circular Economy Solutions"]
+    title: "Safety Services, Testing & Certification",
+    description: "Comprehensive safety solutions from qualified professionals including trainings and certifications by competent persons.",
+    icon: "shield",
+    image: "https://siddhigreen.com/wp-content/uploads/2022/03/Safety-Services-1.png",
+    features: ["Safety Trainings", "Testing Services", "Professional Certifications", "Competent Person Services"],
+    url: "/safety-services/"
   },
   {
     id: 4,
-    title: "Environmental Auditing",
-    description: "Thorough environmental compliance audits to identify risks and ensure adherence to environmental regulations.",
-    icon: "clipboard-check",
-    features: ["Compliance Audits", "Risk Assessment", "Legal Compliance", "Performance Monitoring"]
+    title: "Training Services",
+    description: "Technical and non-technical training programs for all communities and age groups with specialized safety and knowledge programs.",
+    icon: "book",
+    image: "https://siddhigreen.com/wp-content/uploads/2022/03/Training-Services-2.png",
+    features: ["General Safety Training", "Technical Trainings", "Non-technical Training", "Knowledge Enclave Programs"],
+    url: "/training-services/"
   },
   {
     id: 5,
-    title: "Air & Water Quality Management",
-    description: "Advanced monitoring and management solutions for air and water quality to protect public health and environment.",
-    icon: "droplets",
-    features: ["Quality Monitoring", "Pollution Control", "Treatment Solutions", "Regulatory Compliance"]
+    title: "EIA Studies (Environmental Impact Assessment)",
+    description: "Comprehensive baseline studies including meteorology, water quality, air quality, ecology, and socio-economic assessment. First NABET-accredited EIA consultant from Bharuch district.",
+    icon: "map",
+    image: "https://siddhigreen.com/wp-content/uploads/2022/03/EIA-Studies-2.png",
+    features: ["Baseline Studies", "Impact Assessment", "NABET Accredited", "Category A Consultant"],
+    url: "/eia-studies/"
   },
   {
     id: 6,
     title: "Green Building Certification",
     description: "Expert guidance for achieving green building certifications and creating sustainable built environments.",
     icon: "building-2",
-    features: ["LEED Certification", "IGBC Rating", "Energy Efficiency", "Sustainable Design"]
+    image: "https://siddhigreen.com/wp-content/uploads/2022/05/Lab17.jpg",
+    features: ["LEED Certification", "IGBC Rating", "Energy Efficiency", "Sustainable Design"],
+    url: "/green-building-certification/"
   }
 ];
 
@@ -91,8 +136,8 @@ export const scrollChaptersData = [
 export const aboutData = {
   mission: "To provide world-class environmental consulting services that enable sustainable development while protecting our natural resources for future generations.",
   vision: "To be the most trusted environmental consultancy partner in India, recognized for our expertise, innovation, and commitment to environmental excellence.",
-  story: "Siddhi Green Excellence supports industrial and infrastructure growth with grounded environmental guidance, practical compliance strategy, and long-term sustainability thinking. Our work is built around helping organizations move confidently from approvals to responsible operations.",
-  tagline: "Environmental clarity for ambitious businesses.",
+  story: "Founded in 2001, Siddhi Green Excellence Private Limited has been a leading environmental management company serving a multitude of companies from Ankleshwar, Gujarat — the heart of Asia's largest industrial zone. We support industrial and infrastructure growth with grounded environmental guidance, practical compliance strategy, and long-term sustainability thinking.",
+  tagline: "Leading Environmental Management Company serving multitude of companies since 2001.",
   values: [
     { title: "Excellence", description: "Delivering highest quality in every project" },
     { title: "Integrity", description: "Honest and transparent in all our dealings" },
@@ -101,9 +146,9 @@ export const aboutData = {
   ],
   stats: [
     { value: "500+", label: "Projects Completed" },
-    { value: "25+", label: "Years Experience" },
-    { value: "200+", label: "Happy Clients" },
-    { value: "40+", label: "Expert Team Members" }
+    { value: "21+", label: "Years in Business" },
+    { value: "300+", label: "Happy Clients" },
+    { value: "40+", label: "Energetic Team Members" }
   ],
   highlights: [
     "Trusted environmental consulting for industrial, infrastructure, and manufacturing clients",
@@ -116,57 +161,93 @@ export const expertiseData = [
   {
     category: "Certifications & Accreditations",
     items: [
-      "ISO 14001:2015 Certified",
-      "NABET Accredited for EIA",
-      "NABL Accredited Laboratory",
-      "Ministry of Environment Approved",
-      "State Pollution Control Board Empaneled"
+      "NABL – ISO 17025:2017 Accreditation",
+      "NABET – QCI Accreditation for EIA Studies (Category A)",
+      "MoEF CC – Ministry of Environment, Forest and Climate Change",
+      "GPCB – Gujarat Pollution Control Board (Recognized Environmental Auditors)",
+      "FDA – Food & Drug Administration Recognition",
+      "DISH – Directorate of Industrial Safety and Health"
     ]
   },
   {
-    category: "Industry Expertise",
+    category: "Core Strengths",
     items: [
-      "Infrastructure & Real Estate",
-      "Manufacturing & Industrial",
-      "Energy & Power",
-      "Mining & Minerals",
-      "Healthcare & Pharmaceuticals"
+      "Environment is passion and profession since 2001",
+      "40+ qualified analysts and trained field staff",
+      "80+ analytical instruments and lab equipment",
+      "Laboratory Management System compliant with ISO 17025:2017",
+      "Computerized Laboratory Information Management System",
+      "Annual Rate Contracts for 50+ clients"
     ]
   },
   {
-    category: "Technical Capabilities",
+    category: "Technical Expertise",
     items: [
-      "Advanced Environmental Modeling",
-      "GIS & Remote Sensing",
-      "Laboratory Testing & Analysis",
-      "Environmental Monitoring Systems",
-      "Data Analytics & Reporting"
+      "Testing methods conforming to Indian and International standards",
+      "Water validation assignments for Pharmaceutical MNCs",
+      "ETP operations, troubleshooting and re-setup",
+      "Successfully operating ETPs and STPs across Gujarat",
+      "Pioneer in EIA Risk Assessment Studies",
+      "Pollution control strategies: practically proven, cost-effective, state-of-the-art"
     ]
   }
 ];
 
 export const clientsData = [
+  "Birla Cellulose",
   "Avantor",
-  "Walchandnagar",
   "UPL",
   "Solvay",
-  "SKNL",
-  "Seforge",
-  "Sajjan India Limited",
-  "Lanxess",
-  "Kanoria Chemicals & Industries",
-  "KA Malle Pharmaceuticals",
-  "ISGEC",
-  "Insecticides India",
-  "Heubach",
-  "Gulbrandsen Technologies",
-  "Valiant Organics",
-  "Sika",
-  "Shiva Pharmachem",
   "Saint-Gobain",
-  "Ratnamani Bio-Chemicals",
-  "Neogen Chemicals",
-  "Navdeep Chemicals"
+  "Rallis",
+  "Piramal",
+  "Pidilite",
+  "Godrej",
+  "GFL",
+  "Firmenich",
+  "Elantas",
+  "Conagra Foods",
+  "Britannia",
+  "Blue Star",
+  "Lanxess",
+  "NOCIL",
+  "Lupin Pharmaceuticals",
+  "Jayant Agro-Organics",
+  "Indofil Industries",
+  "Valiant Organics",
+  "ZCL Chemicals",
+  "NeoGen Chemicals",
+  "Galaxy Surfactants",
+  "Alkem Laboratories",
+  "Bharat Rasayan",
+  "DORF Ketal",
+  "Shiva Pharmachem",
+  "Ratnamani",
+  "Sika",
+  "ISGEC",
+  "RPG",
+  "Roxul",
+  "Rockwood",
+  "Riddhi",
+  "PI Industries",
+  "Panama",
+  "Organic",
+  "Lonsen",
+  "KCI",
+  "GSDC",
+  "Ginni",
+  "GESIA",
+  "Gulbandsen",
+  "Element Chemilink",
+  "HLEO Glasscoat",
+  "ICPAK",
+  "Best Value Chem",
+  "Navdeep Chemicals",
+  "Elantas Beck India",
+  "Amarjyot Chemicals",
+  "Mega Innovative Crops",
+  "Gujarat Insecticides",
+  "Cheminova India"
 ];
 
 export const projectsData = [
@@ -211,58 +292,114 @@ export const projectsData = [
 export const teamData = [
   {
     id: 1,
-    name: "Purvesh Shah",
-    position: "CEO",
-    qualification: "Founder",
-    specialization: "Leadership",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+    name: "Purvesh M. Shah",
+    position: "Founder, MD & CEO",
+    qualification: "B.E. – Chemical Engineer",
+    specialization: "20+ years in treatment processes, troubleshooting, cleaner production, water recycling, zero discharge, air pollution control, waste management",
+    description: "Chemical Engineer with expertise in environmental solutions. Aims to create opportunities for youth of towns and villages.",
+    image: "https://siddhigreen.com/wp-content/uploads/2022/04/Purvesh.jpg"
   },
   {
     id: 2,
-    name: "Kuntal Shah",
-    position: "CFO and HOD",
-    qualification: "Founder",
-    specialization: "Finance and Operations",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80"
+    name: "Kuntal P. Shah",
+    position: "Founder, Director & COO",
+    qualification: "B.E. – Chemical Engineer",
+    specialization: "Quality, Training, Standardization & Automation",
+    description: "Think-tank behind company policies, systems and procedures. Advocates automation of processes for SSIs and champions quality excellence.",
+    image: "https://siddhigreen.com/wp-content/uploads/2022/04/Kuntal1.jpg"
   }
 ];
 
 export const testimonialsData = [
   {
     id: 1,
-    name: "Amit Desai",
-    position: "Project Director",
-    company: "Infrastructure Development Corp",
-    content: "Siddhi Green's expertise in EIA helped us achieve environmental clearance 30% faster than expected. Their thorough approach and regulatory knowledge are unmatched.",
+    name: "Jitendra Mehta",
+    position: "Client",
+    company: "Ankleshwar",
+    content: "Siddhi green is genuine and work dedicatedly. Staff is well trained. They understand customer problems and prepare solution accordingly. Positive on time management.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80"
   },
   {
     id: 2,
-    name: "Sneha Reddy",
-    position: "Sustainability Head",
-    company: "Global Manufacturing Ltd",
-    content: "The sustainability roadmap developed by Siddhi Green transformed our operations. We achieved our carbon reduction goals 2 years ahead of schedule.",
+    name: "Govind Organics Industries LLP",
+    position: "Client",
+    company: "Dahej",
+    content: "Really happy with your determination to finish this project. Your helpful attitude makes it clear that you will continue to work with our company.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80"
   },
   {
     id: 3,
-    name: "Vikram Singh",
-    position: "CEO",
-    company: "Green Energy Ventures",
-    content: "Professional, knowledgeable, and efficient. Siddhi Green handled all environmental aspects of our solar project with excellence. Highly recommended!",
+    name: "Amarjyot Chemicals Ltd.",
+    position: "Client",
+    company: "Jhagadia",
+    content: "Responding promptly regarding any query, satisfied response has been always provided.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80"
+  },
+  {
+    id: 4,
+    name: "Elantas Beck India Ltd.",
+    position: "Client",
+    company: "Ankleshwar",
+    content: "We are satisfied with services of Siddhi Green Excellence Pvt. Ltd. Ankleshwar",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+  },
+  {
+    id: 5,
+    name: "Jayant Agro Organics Limited",
+    position: "Client",
+    company: "Jhagadia",
+    content: "Under the leadership of Shri Purvesh Bhai and Mrs. Shah the team Siddhi has performed excellent work.",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80"
+  },
+  {
+    id: 6,
+    name: "QV Labs Pvt. Ltd.",
+    position: "Client",
+    company: "Ankleshwar",
+    content: "Siddhi Team is excellent to work with. Really impressed by their work ethics, attention to details and correct advice.",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+  },
+  {
+    id: 7,
+    name: "Mega Innovative Crops Pvt. Ltd.",
+    position: "Client",
+    company: "Panoli",
+    content: "We are satisfied from your work. Overall satisfactory.",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80"
+  },
+  {
+    id: 8,
+    name: "Gujarat Insecticides Limited",
+    position: "Client",
+    company: "Ankleshwar",
+    content: "Technical Team of consultant is very good. Data analysis is good. Need to conduct client training program.",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+  },
+  {
+    id: 9,
+    name: "Cheminova India Limited",
+    position: "Client",
+    company: "Panoli",
+    content: "All subject matters experts are good at knowledge and cooperative. Submission and approval process of documents is good. No delays observed.",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80"
   }
 ];
 
 export const timelineData = [
   {
     id: 1,
-    year: "2000",
+    year: "2001",
     title: "The Beginning",
-    description: "Siddhi Green Excellence was founded in Ankleshwar, Gujarat by Purvesh Shah and Kuntal Shah. Starting with a small but determined team, the firm set out to bring world-class environmental guidance to India's fast-growing industrial corridor.",
+    description: "Siddhi Green Excellence Private Limited was founded in Ankleshwar, Gujarat by Purvesh Shah and Kuntal Shah. Starting with a small but determined team in the heart of Asia's largest industrial zone, the firm set out to bring world-class environmental management services to India's fast-growing industries.",
     icon: "flag",
     color: "emerald",
     category: "Foundation",
@@ -350,30 +487,51 @@ export const timelineData = [
   },
 ];
 
+export const industriesData = [
+  "Pharmaceuticals",
+  "Pharma Intermediates",
+  "Pesticides & Formulations",
+  "Resins",
+  "Specialty Chemicals",
+  "Dye & Dye Intermediates",
+  "Agrochemicals & Intermediates",
+  "Synthetic Organic & Inorganic Chemicals",
+  "Petrochemicals",
+  "Glass Industry"
+];
+
 export const contactInfo = {
   email: "siddhi.ank@gmail.com",
-  phone: "+91 9426149105",
-  address: "Plot No. C-3/3, Kamal Arcade - The Vertical Sunclock, Comm, 3 Station Road, near SBI, Ankleshwar GIDC, Ankleshwar, Gujarat 393001",
+  phone: "+91 98243 45895",
+  address: "\"Kamal Arcade – The Vertical Sunclock\", Comm. Plot No. C-3/3, Nr. SBI Industrial Branch, GIDC Station Road, Ankleshwar – 393 002, Bharuch, Gujarat (India)",
   hours: "Monday - Friday: 9:00 AM - 6:00 PM",
   offices: [
     {
       id: "ankleshwar",
       city: "Ankleshwar",
-      title: "Siddhi Green Excellence, Ankleshwar",
-      address: "Plot No. C-3/3, Kamal Arcade - The Vertical Sunclock, Comm, 3 Station Road, near SBI, Ankleshwar GIDC, Ankleshwar, Gujarat 393001",
-      mapQuery: "Siddhi Green Excellence, Plot No. C-3/3, Kamal Arcade - The Vertical Sunclock, 3 Station Road, Ankleshwar GIDC, Ankleshwar, Gujarat 393001"
+      title: "Head Office - Siddhi Green Excellence",
+      address: "\"Kamal Arcade – The Vertical Sunclock\", Comm. Plot No. C-3/3, Nr. SBI Industrial Branch, GIDC Station Road, Ankleshwar – 393 002, Bharuch, Gujarat (India)",
+      mapQuery: "Kamal Arcade The Vertical Sunclock Ankleshwar GIDC Station Road"
+    },
+    {
+      id: "dahej",
+      city: "Dahej",
+      title: "Siddhi Green Excellence, Dahej",
+      address: "\"Sanskar Avenue\" Shop No. GF-37, P.O. Jolva, Tal. Vagra, Bharuch, Gujarat (India)",
+      mapQuery: "Sanskar Avenue Shop No GF-37 Jolva Vagra Bharuch Gujarat"
     },
     {
       id: "vadodara",
       city: "Vadodara",
-      title: "Siddhi Green Office, Vadodara",
-      address: "Vadodara, Gujarat",
-      mapQuery: "Siddhi Green office Vadodara Gujarat"
+      title: "Siddhi Green Excellence, Vadodara",
+      address: "601, 73 East Avenue, Bhailal Amin Marg, Sarabhai Campus, Genda Circle, Vadodara, Gujarat – 390017",
+      mapQuery: "73 East Avenue Bhailal Amin Marg Sarabhai Campus Genda Circle Vadodara"
     }
   ],
   social: {
-    linkedin: "#",
-    twitter: "#",
-    facebook: "#"
+    instagram: "https://www.instagram.com/siddhigreenank",
+    linkedin: "https://in.linkedin.com/company/siddhigreenank",
+    youtube: "https://www.youtube.com/channel/UCTSbaamyaWfHH-hOp9WHziw",
+    googlePlay: "https://play.google.com/store/apps/details?id=com.safe2godigital.siddhigreen"
   }
 };
